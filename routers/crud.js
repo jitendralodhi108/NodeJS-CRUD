@@ -16,7 +16,9 @@ router.get('/display', async (req, res) => {
 // get by ID
 router.get('/get:id', async (req, res) => {
     try {
+        // req.params.id is used to get id from url 
         const action = await operation.findById(req.params.id)
+        console.log(req.params.id)
         res.json(action)
     } catch (err) {
         res.send('Error ' + err)
