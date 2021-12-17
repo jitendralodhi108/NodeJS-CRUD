@@ -39,7 +39,7 @@ router.post('/insert', async (req, res) => {
         const a1 = await action.save()
         res.json(a1)
     } catch (err) {
-        res.send('Error')
+        res.send('Error ' + "(All fields are mandatory)")
     }
 })
 
@@ -58,8 +58,8 @@ router.patch('/:id',async(req,res)=> {
         res.send('Error')
     }
 })
-// delete method 
 
+// delete method 
 router.delete('/:id', async (req, res) => {
 
     try {

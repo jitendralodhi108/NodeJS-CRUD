@@ -1,0 +1,112 @@
+swagger: "2.0"
+info:
+  title: MY First API 
+  description: This is my company API Documentation
+  version: 1.0
+  contact:
+    email: syosas@gmail.com
+  liscence:
+    name: Apache 2.0
+    url: "http://www.apache.org/liscences/LIS"
+  servers:
+    -url: http://localhost:8000
+    description: THis is my local Server
+    -url: http://example.com/
+    description: This is my original URL
+schemes: [https,http]
+
+# ------------------------------------------------------------------------
+#Return Users From get request
+paths:
+  /crud/display: #urls endpoint
+    get:
+      summary: Returns a Json 
+      description: all Employee details in json
+      responses:
+        200:    # status code
+          description: Successul Response
+          schema: 
+            type: string
+            example: "succesfully fetched response"
+        400:
+          description: User Error
+          schema: 
+            type: string
+            example: "Some Error "
+
+# -------------------------------------------------------------------------------
+# Return get user by ID 
+  /crud/get{userId}: #urls endpoint
+    get:
+      summary: Returns a user by ID.
+      description: Returns the Specific User
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type : integer
+            format: int64
+      responses: 
+        '200':
+          description: OK
+          schema:
+            type: object
+            example: {name: syed,age: 24 , designation: developer }
+
+# -----------------------------------------------------------------------------------
+
+# Post json/body & Body required
+  /crud/insert:
+    post:
+      summary: Adds a new Employee
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+
+            # input field parameters 
+            required:
+              - name
+              - age
+              - designation
+            properties:
+
+            # Type of input field 
+              name:
+                type: string
+              age:
+                type: integer
+              designation:
+                type: string
+      responses:
+        '200':
+          description: OK
+
+# ----------------------------------------------------------------------------------------
+
+# Delete API By Id 
+  # /crud/{id}:
+  #   delete:
+  #     summary: Remove the Employee Records
+  #     # tags: [Books]     
+  #     parameters:
+  #      - in: path
+  #         name: id
+  #         schema:
+  #           type: string
+  #         required: true
+  #         description: The Employee object id
+  
+  #     responses:
+  #       200:
+  #         description: The Employee Record has been Deleted
+  #       404:
+  #         description: The Record did not find in the record 
+ 
+# ----------------------------------------------------------------------------------------------
